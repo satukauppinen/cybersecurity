@@ -1,10 +1,10 @@
 # Cybersecurity course logbook
 
-## First week 
-The start of the course
-### 30.10.
-- First lecture, I had a remote day so I could actually attend in real time
-- Logged into Netacad for the Cisco part of this course
-- Established this repo
-- 
-Time spent: 1h 45min
+| Date |Hours | Description |
+| --- | --- |--- |
+| 30.10. |  1h 45min |-Attended first lecture <br /> -Established this repo <br /> -Logged into Netacad for the Cisco part of the course |
+| 31.10. |  2h 30min |-Watched the tutorial video in ItsLearning <br /> -Modified this logbook <br /> -In Cisco completed Knowledge check, Course navi tutorial and modules 1 and 2  |
+| *-* |   *-* | *-* |
+|  *-* |   *-* | *-* |
+|  *-* |   *-*| *-* |
+|  *-* |   *-* | *-* |

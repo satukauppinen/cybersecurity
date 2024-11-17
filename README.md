@@ -10,5 +10,5 @@
 |  8.11. |   1h 15min | - Studied in Portswigger and completed a couple of labs|
 |  13.11. |   1h 35min | - Attended workshop lecture |
 |  15.11. |   4h | - Studied in Portswigger, completed a couple of labs <br /> - Watched tutorial videos in ItsLearning <br /> - Completed the short reflection assignment |
-|  *-* |   *-* | *-* |
+| 16.11. |   7h 30min | - Watched mondays lecture recording <br/> - Started with the booking system <br/> - Had a lot of troubles<br/> - Solved the troubles<br/> - Watched tutorial videos<br/> - Did the Booking system Phase 1 steps 1, 2 and part of 3 (up till alert fixing) | 
 |  *-* |   *-* | *-* |

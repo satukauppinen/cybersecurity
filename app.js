@@ -17,9 +17,11 @@ app.use('*', (c, next) => {
         "style-src 'self';"+
         "img-src 'self';"+
         "frame-ancestors 'none';"+
-        "form-action 'self';");
+        "form-action 'self';"
+    );
 
     c.header('X-Content-Type-Options', 'nosniff');
+    console.log('X-Content-Type-Options header set');
 
     
 
@@ -43,6 +45,11 @@ app.post('/login', loginUser);
 //Serve index
 app.get('/', async (c) => {
     return c.html(await Deno.readTextFile('./views/index.html'));
+});
+
+//Serve success response page
+app.get('/', async (c) => {
+    return c.html(await Deno.readTextFile('./views/successresponse.html'));
 });
 
 

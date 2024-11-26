@@ -63,7 +63,7 @@ export async function registerUser(c) {
         );
 
         // Success response
-        return c.redirect('/successresponse.html');
+        return c.redirect('/successresponse');
         
 
     } catch (error) {

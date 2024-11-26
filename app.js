@@ -5,15 +5,24 @@ import { registerUser } from "./routes/register.js"; // Import register logic
 
 const app = new Hono();
 
-app.use('/static/*', serveStatic({ root: './static'}));
+app.use('/static/*', serveStatic({ root: '.'}));
 
 // CSP Middleware
 app.use('*', (c, next) => {
-    c.res.headers.set(
-        'Content-Security-Policy',
-        "default-src 'self'; script-src 'self'; style-src 'self'; frame-ancestors 'none'; form-action 'self'; 'sha256-4Su6mBWzEIFnH4pAGMOuaeBrstwJN4Z3pq/s1Kn4/KQ=';"
-    );
-    c.res.headers.set('X-Content-Type-Options', 'nosniff');
+    c.header('Content-Type', 'text/html');
+
+    c.header('Content-Security-Policy',
+        "default-src 'self';"+
+        "script-src 'self';"+
+        "style-src 'self';"+
+        "img-src 'self';"+
+        "frame-ancestors 'none';"+
+        "form-action 'self';");
+
+    c.header('X-Content-Type-Options', 'nosniff');
+
+    
+
     return next();
 });
 
@@ -30,6 +39,11 @@ app.get('/login', async (c) => {
 });
 
 app.post('/login', loginUser);
+
+//Serve index
+app.get('/', async (c) => {
+    return c.html(await Deno.readTextFile('./views/index.html'));
+});
 
 
 Deno.serve(app.fetch);

@@ -7,7 +7,7 @@ const registerSchema = z.object({
     email: z.string().email({ message: "Invalid email address" }).max(50, "Email must not exceed 50 characters"), 
     password: z.string().min(8, "Password must be at least 8 characters long"), 
    
-    role: z.enum(["reserver", "admin"], { message: "Invalid role" }), 
+    role: z.enum(["reserver", "administrator"], { message: "Invalid role" }), 
     });
 
 // Helper function to validate if a string is a valid email 
@@ -17,7 +17,7 @@ function isValidEmail(email) {
 }
 // Helper function to check if email already exists 
 async function isUniqueEmail(email) {
-    const result = await client.queryArray(`SELECT email FROM abc123_users WHERE email = $`, [email]);
+    const result = await client.queryArray(`SELECT email FROM abc123_users WHERE email = $1`, [email]);
     return result.rows.length === 0;
 }
 
@@ -30,10 +30,10 @@ export async function registerUser(c) {
     const pseudonym = body.pseudonym;
     const age = body.age;
     const role = body.role;
-    const consent = body.consent
+    const consent = body.consent;
 
     try {
-        // Validate if username is an email 
+        //THIS PART NOT IN USE! Validate if username is an email 
         //if (!isValidEmail(username)) {
           //  return c.text('Invalid email address', 400);
         //}
@@ -63,9 +63,12 @@ export async function registerUser(c) {
         );
 
         // Success response
-        return c.text('User registered successfully!');
+        return c.redirect('/successresponse.html');
+        
+
     } catch (error) {
         console.error(error);
         return c.text('Error during registration', 500);
+        
     }
 };

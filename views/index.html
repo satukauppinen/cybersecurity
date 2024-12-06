@@ -4,8 +4,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Login</title>
+    <title>Booking System</title>
     <link rel="stylesheet" href="/static/styles.css">
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            fetch('/api/user')
+                .then(response => response.json())
+                .then(data => {
+                    const { role } = data;
+                    if (role === 'administrator') {
+                        document.getElementById('adminOptions').style.display = 'block';
+                    }
+                    if (role === 'reserver' || role === 'administrator') {
+                        document.getElementById('reserverOptions').style.display = 'block';
+                    }
+                })
+                .catch(error => console.error('Error fetching user role:', error));
+        });
+
+        function logout() { 
+            fetch('/logout', { 
+                method: 'GET', 
+                credentials: 'same-origin' 
+            }).then(response => { 
+                if (response.ok) { 
+                    window.location.href = '/'; 
+                } 
+            }).catch(error => console.error('Error during logout:', error)); 
+        }
+    </script>
 </head>
 
 <body>
@@ -15,6 +42,16 @@
         <ul>
             <li><a href="login">Login</a></li>
             <li><a href="register">Register</a></li>
+            <li><a href="resources">View Resources</a></li>
+            <li><a href="reservations">View Reservations</a></li>
+            <div id="adminOptions" style="display: none;">
+                <li><a href="resource">Add Resource</a></li>
+                <li><a href="reservation">Add Reservation</a></li>
+            </div>
+            <div id="reserverOptions" style="display: none;">
+                <li><a href="reservation">Book a Resource</a></li>
+            </div>
+            <li id="logoutOption" style="display: none;"><a href="/" onclick="logout()">Logout</a></li>
         </ul>
     </div>
 </body>

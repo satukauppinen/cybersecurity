@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Book a Resource</title>
+    <link rel="stylesheet" href="/static/styles.css" type="text/css" media="all">
+</head>
+<body>
+    <form id="reservationForm">
+        <label for="pseudonym">Pseudonym:</label>
+        <input type="text" id="pseudonym" name="pseudonym" required>
+        <label for="resourceId">Resource ID:</label>
+        <input type="text" id="resourceId" name="resourceId" required>
+        <label for="startTime">Start Time:</label>
+        <input type="datetime-local" id="startTime" name="startTime" required>
+        <label for="endTime">End Time:</label>
+        <input type="datetime-local" id="endTime" name="endTime" required>
+        <button type="submit">Book</button>
+    </form>
+    <script>
+        document.getElementById('reservationForm').addEventListener('submit', async (event) => {
+            event.preventDefault();
+            const pseudonym = document.getElementById('pseudonym').value;
+            const resourceId = document.getElementById('resourceId').value;
+            const startTime = document.getElementById('startTime').value;
+            const endTime = document.getElementById('endTime').value;
+            await fetch('/reservation', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ pseudonym, resourceId, startTime, endTime })
+            });
+            alert('Resource booked!');
+        });
+    </script>
+</body>
+</html>

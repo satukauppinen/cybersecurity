@@ -1,6 +1,7 @@
 import client from "../db/db.js";
 import * as bcrypt from "https://deno.land/x/bcrypt/mod.ts";
 import { z } from "https://deno.land/x/zod@v3.16.1/mod.ts";
+import { sessionStore } from "../auth.js";
 
 // Zod schema for login validation
 const loginSchema = z.object({
@@ -11,7 +12,7 @@ const loginSchema = z.object({
 // Helper function to fetch the user by email
 async function getUserByEmail(email) {
     const result = await client.queryObject(
-        'SELECT username, password, email FROM abc123_users WHERE email=$1', 
+        'SELECT user_id, username, password, email, role FROM abc123_users WHERE email=$1', 
         [email]
     );
     return result.rows.length > 0 ? result.rows[0] : null;
@@ -32,7 +33,7 @@ export async function loginUser(c) {
             return c.text("Invalid email or password", 400);
         }
 
-        const { username: storedUsername, password: storedPassword } = user;
+        const { user_id, username, password: storedPassword, role } = user;
 
         // Compare passwords
         const passwordMatches = await bcrypt.compare(password, storedPassword);
@@ -40,19 +41,17 @@ export async function loginUser(c) {
             return c.text("Invalid email or password", 400);
         }
 
+        // Store user info in session
+        const sessionId = Math.random().toString(36).substring(2);
+        sessionStore.set(sessionId, { userId: user_id, username, role });
+        c.res.headers.set('Set-Cookie', `session_id=${sessionId}; Path=/; HttpOnly; Secure; SameSite=Strict`);
+
         // Authentication successful
-        return c.text(`Welcome back, ${storedUsername}!`);
-
-        
+        return c.redirect('/');
     } catch (error) {
-        // Handle validation errors
         if (error instanceof z.ZodError) {
-            return c.text(
-                `Validation Error: ${error.errors.map(e => e.message).join(",")}`, 
-                400
-            );
+            return c.text(`Validation Error: ${error.errors.map(e => e.message).join(",")}`, 400);
         }
-
         console.error(error);
         return c.text("Error during login", 500);
     }

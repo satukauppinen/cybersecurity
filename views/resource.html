@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Resource</title>
+    <link rel="stylesheet" href="/static/styles.css" type="text/css" media="all">
+</head>
+<body>
+    <form id="resourceForm">
+        <label for="resourceName">Resource Name:</label>
+        <input type="text" id="resourceName" name="resourceName" required>
+        <label for="resourceDescription">Resource Description:</label>
+        <textarea id="resourceDescription" name="resourceDescription" required></textarea>
+        <button type="submit">Add Resource</button>
+    </form>
+    <script>
+        document.getElementById('resourceForm').addEventListener('submit', async (event) => {
+            event.preventDefault();
+            const resourceName = document.getElementById('resourceName').value;
+            const resourceDescription = document.getElementById('resourceDescription').value;
+            await fetch('/resource', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ resourceName, resourceDescription })
+            });
+            alert('Resource added!');
+        });
+    </script>
+</body>
+</html>

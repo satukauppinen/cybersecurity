@@ -19,5 +19,5 @@
 | 2.12. | 5h | - Watched lecture recordings<br/> - Looked at some of the extra materials<br/> - Attended lecture |
 | 4.12. | 4h| - Started working on phase 3<br/> - Attended the workshop lecture |
 | 6.12. | 4h 20min | - Working on phase 3<br/> - Added functionality for reservations and resources<br/> - Authentication to distinguish between admin and reserver<br/> - Logout option added<br/> - <a href=https://github.com/satukauppinen/cybersecurity/blob/main/securitycheck.md>This is a link to the security check md-file </a> |
-| 8.12.| 2h | - Started the phase 4 |
-| 10.12.| 3h 30min | - Added all the pages required in the instructions <br/> - The contents for both Privacy Policy and Terms of Service I asked AI to do, would be too much work right now to make them myself <br/> - Had some problems with the account-page data fetching, code not working <br/> - Managed to solve the problems, things seem to be working <br/> - Wrote the Consent-assigment|
+| 8.12.| 3h | - Started the phase 4 |
+| 10.12.| 35h 30min | - Added all the pages required in the instructions <br/> - The contents for both Privacy Policy and Terms of Service I asked AI to do, would be too much work right now to make them myself <br/> - Had some problems with the account-page data fetching, code not working <br/> - Managed to solve the problems, things seem to be working <br/> - Wrote the Consent-assigment|

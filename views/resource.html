@@ -6,14 +6,18 @@
     <link rel="stylesheet" href="/static/styles.css" type="text/css" media="all">
 </head>
 <body>
+    <div class="container">
+        <h1>Add Resource</h1>
     <form id="resourceForm">
+        <label for="resourceId">Resource ID:</label>
+        <input type="text" id="resourceId" name="resourceId" required>
         <label for="resourceName">Resource Name:</label>
         <input type="text" id="resourceName" name="resourceName" required>
         <label for="resourceDescription">Resource Description:</label>
         <textarea id="resourceDescription" name="resourceDescription" required></textarea>
         <button type="submit">Add Resource</button>
     </form>
-    <script>
+    <script nonce="abc123">
         document.getElementById('resourceForm').addEventListener('submit', async (event) => {
             event.preventDefault();
             const resourceName = document.getElementById('resourceName').value;
@@ -26,5 +30,6 @@
             alert('Resource added!');
         });
     </script>
+</div>
 </body>
 </html>

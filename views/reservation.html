@@ -3,9 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <title>Book a Resource</title>
-    <link rel="stylesheet" href="/static/styles.css" type="text/css" media="all">
+    <link rel="stylesheet" href="/static/styles.css">
 </head>
 <body>
+    <div class="container">
+    <h1>Add a Reservation</h1>
     <form id="reservationForm">
         <label for="pseudonym">Pseudonym:</label>
         <input type="text" id="pseudonym" name="pseudonym" required>
@@ -16,15 +18,18 @@
         <label for="endTime">End Time:</label>
         <input type="datetime-local" id="endTime" name="endTime" required>
         <button type="submit">Book</button>
+        <br/>
+        <br/>
+        <a href="/">Back to Home</a>
     </form>
-    <script>
+    <script nonce="abc123">
         document.getElementById('reservationForm').addEventListener('submit', async (event) => {
             event.preventDefault();
             const pseudonym = document.getElementById('pseudonym').value;
             const resourceId = document.getElementById('resourceId').value;
             const startTime = document.getElementById('startTime').value;
             const endTime = document.getElementById('endTime').value;
-            await fetch('/reservation', {
+            await fetch('/api/reservation', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ pseudonym, resourceId, startTime, endTime })
@@ -32,5 +37,6 @@
             alert('Resource booked!');
         });
     </script>
+    </div>
 </body>
 </html>

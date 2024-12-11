@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
-    fetch('/resources')
+    fetch('/api/resources')
         .then(response => response.json())
         .then(data => {
             console.log('Fetched resources:', data);

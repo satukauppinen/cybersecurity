@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
-    fetch('/reservations')
+    fetch('/api/reservations')
         .then(response => response.json())
         .then(data => {
             console.log('Fetched reservations:', data);

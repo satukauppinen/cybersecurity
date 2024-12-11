@@ -6,10 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Booking System</title>
     <link rel="stylesheet" href="/static/styles.css">
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
+    <script nonce="abc123">
+        document.addEventListener('DOMContentLoaded', function () {
             fetch('/api/user')
-                .then(response => response.json())
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
                 .then(data => {
                     const { role } = data;
                     if (role) {
@@ -55,7 +60,8 @@
             <div id="reserverOptions" style="display: none;">
                 <li><a href="reservation">Book a Resource</a></li>
             </div>
-            <li id="accountOption" style="display: none;"><a href="account">Account</a></li> <!-- Add link to Account page -->
+            <li id="accountOption" style="display: none;"><a href="account">Account</a></li>
+            <!-- Add link to Account page -->
             <li id="logoutOption" style="display: none;"><a href="#" onclick="logout()">Logout</a></li>
         </ul>
         <a href="/privacy">Privacy Policy</a>

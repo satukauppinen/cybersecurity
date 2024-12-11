@@ -1,10 +1,16 @@
 export const sessionStore = new Map(); // In-memory session store, replace with a database in production
 
 export function authenticateUser(c, next) {
-    const sessionId = c.req.header('Cookie')?.split('=')[1];
+    const cookieHeader = c.req.header('Cookie');
+    if (!cookieHeader) {
+        return c.redirect('/login');
+    }
+
+    const sessionId = cookieHeader.split(';').find(cookie => cookie.trim().startsWith('session_id=')).split('=')[1];
     if (!sessionId || !sessionStore.has(sessionId)) {
         return c.redirect('/login');
     }
+
     c.req.user = sessionStore.get(sessionId);
     return next();
 }

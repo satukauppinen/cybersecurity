@@ -1,27 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="refresh" content="5;url=/views/index.html">
     <title>Registration Successful</title>
-    <script>
+    <link rel="stylesheet" href="/static/styles.css">
+    <script nonce="abc123">
         let countdown = 5;
         const interval = setInterval(() => {
             document.getElementById('timer').textContent = countdown;
             countdown--;
             if (countdown < 0) {
                 clearInterval(interval);
-                window.location.href="index.html";
+                window.location.href = "index.html";
             }
         }, 1000);
     </script>
 </head>
+
 <body>
-    <h1>Registration Successful</h1>
-    <p>You will be redirected to the homepage in <span id="timer">5</span> seconds...</p>
-    <p>If you are not redirected, <a href="index.html">click here</a>.</p>
+    <div class="container">
+        <h1>Registration Successful</h1>
+        <p>You will be redirected to the homepage in <span id="timer">5</span> seconds...</p>
+        <p>If you are not redirected, <a href="index.html">click here</a>.</p>
+    </div>
 </body>
+
 </html>
 
 <!-- Tätä täytyy vielä vähän kehittää jos aion pitää sen mukana, lisää css ja ehkä js omaan fileen -->
